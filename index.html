@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tbay · Safety Season</title>
+<meta name="description" content="How Tbay protects your account, funds and every transaction, and what we did in response to PHP2Shell.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#003152;--navy2:#00243d;--teal:#00CCCC;--teal-d:#00807F;--ink:#003152;--ink2:#4A6378;--bg:#F2F8FA;--line:#DCEBEF}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+.wrap{max-width:520px;margin:0 auto;padding:0 16px calc(28px + env(safe-area-inset-bottom))}
+
+.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(155deg,var(--navy2),var(--navy) 70%);padding:calc(26px + env(safe-area-inset-top)) 16px 34px}
+.hero:before{content:"";position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(45deg,var(--teal) 0 1px,transparent 1px 22px)}
+.hero:after{content:"";position:absolute;right:-90px;top:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(0,204,204,.35),transparent 65%)}
+.hin{position:relative;z-index:1;max-width:520px;margin:0 auto}
+.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(0,204,204,.14);border:1px solid rgba(0,204,204,.75);color:#4FF0F0;font-weight:600;font-size:11.5px;letter-spacing:1.8px;padding:4px 12px;border-radius:999px}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px rgba(0,204,204,.3)}
+.shield{margin-top:18px;width:78px;height:78px;border-radius:24px;background:linear-gradient(145deg,#29d9d9,#00b3ba);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(0,204,204,.3)}
+.shield svg{width:42px;height:42px;color:var(--navy)}
+h1{margin-top:16px;font-weight:800;font-size:clamp(28px,8.4vw,36px);line-height:1.1;letter-spacing:-.8px}
+h1 .m{background:#fff;color:var(--navy);padding:0 10px 2px;border-radius:12px;display:inline-block;margin-top:5px}
+.hero p{margin-top:12px;font-size:15px;color:#D6E7EF}
+
+section{margin-top:28px}
+.eb{font-size:11.5px;font-weight:700;letter-spacing:1.8px;color:var(--teal-d)}
+h2{font-size:21px;font-weight:800;letter-spacing:-.4px;line-height:1.25;margin-top:3px}
+p.t{margin-top:8px;font-size:14.5px;color:var(--ink2)}p.t b{color:var(--ink)}
+
+.alert{margin-top:12px;display:flex;gap:12px;align-items:flex-start;background:#FFF6EA;border:1px solid #F1D3A8;border-radius:16px;padding:14px}
+.alert i{flex:none;width:38px;height:38px;border-radius:12px;background:#FFE3BC;color:#B36A00;display:flex;align-items:center;justify-content:center}.alert i svg{width:20px;height:20px}
+.alert p{font-size:14px;color:#5A3A12}.alert b{color:#3D2500}
+
+.done{list-style:none;margin-top:14px;position:relative}
+.done li{position:relative;display:flex;gap:14px;padding-bottom:14px}
+.done li:not(:last-child):before{content:"";position:absolute;left:17px;top:38px;bottom:2px;width:2px;background:#9BDCDC}
+.done .k{flex:none;width:36px;height:36px;border-radius:50%;background:var(--teal);color:var(--navy);display:flex;align-items:center;justify-content:center}.done .k svg{width:18px;height:18px}
+.done .c{flex:1;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.done b{display:block;font-size:15.5px;font-weight:700;line-height:1.3}
+.done span{display:block;margin-top:3px;font-size:13.5px;color:var(--ink2)}
+.done em{font-style:normal;display:inline-block;margin-top:6px;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--teal-d);background:#E6F8F8;border-radius:999px;padding:2px 9px}
+
+.layers{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.ly{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
+.ly i{flex:none;width:44px;height:44px;border-radius:14px;background:var(--navy);color:var(--teal);display:flex;align-items:center;justify-content:center}.ly i svg{width:22px;height:22px}
+.ly b{display:block;font-size:15.5px;font-weight:700;line-height:1.3}
+.ly span{display:block;margin-top:2px;font-size:13.5px;color:var(--ink2)}
+.ly small{display:block;margin-top:6px;font-size:12px;color:#6F8798;border-top:1px dashed var(--line);padding-top:6px}
+
+.quote{margin-top:12px;background:linear-gradient(150deg,var(--navy2),var(--navy));color:#fff;border-radius:20px;padding:20px 18px;position:relative;overflow:hidden}
+.quote:before{content:"";position:absolute;inset:0;opacity:.06;background-image:repeating-linear-gradient(45deg,var(--teal) 0 1px,transparent 1px 22px)}
+.quote>*{position:relative}
+.quote b{display:block;font-size:20px;font-weight:800;line-height:1.25;letter-spacing:-.3px}
+.quote b span{color:var(--teal)}
+.quote p{margin-top:8px;font-size:14px;color:#C9DCE6}
+
+.tips{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tip{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
+.tip i{width:36px;height:36px;border-radius:11px;background:#E6F8F8;color:var(--teal-d);display:flex;align-items:center;justify-content:center}.tip i svg{width:19px;height:19px}
+.tip b{display:block;margin-top:8px;font-size:14px;font-weight:700;line-height:1.3}
+.tip span{display:block;margin-top:3px;font-size:12.5px;color:var(--ink2)}
+
+.sign{margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;text-align:center}
+.sign .sh{width:52px;height:52px;margin:0 auto;border-radius:16px;background:var(--teal);color:var(--navy);display:flex;align-items:center;justify-content:center}.sign .sh svg{width:28px;height:28px}
+.sign p{margin-top:10px;font-size:14px;color:var(--ink2)}
+.sign b{display:block;margin-top:10px;font-size:18px;font-weight:800;letter-spacing:-.3px}
+.sign small{display:block;font-size:13px;color:var(--teal-d);font-weight:600}
+footer{margin-top:18px;text-align:center;font-size:12px;color:#7A90A0}
+</style>
+</head>
+<body>
+<header class="hero"><div class="hin">
+  <span class="pill"><i></i>SAFETY SEASON</span>
+  <div class="shield"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+  <h1>Your safety comes first.<br><span class="m">It always has.</span></h1>
+  <p>Trading on Tbay means trusting us with your funds, your data and your account. Every time you open the app, you deserve a secure, worry-free experience. That's the standard we hold ourselves to every day, and the heart of our Safety Season.</p>
+</div></header>
+
+<main class="wrap">
+
+  <section>
+    <div class="eb">SAFETY SEASON IN ACTION</div>
+    <h2>We acted as soon as PHP2Shell surfaced</h2>
+    <div class="alert"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></svg></i>
+      <p><b>What happened:</b> security weaknesses known as PHP2Shell recently drew wide attention, and several organisations were targeted by malicious cyberattacks.</p></div>
+    <p class="t">The Tbay team responded straight away with a full security audit and these safeguards:</p>
+    <ol class="done">
+      <li><div class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="c"><b>Full system audit</b><span>We inspected our infrastructure thoroughly to find and remove potential risks.</span><em>COMPLETED</em></div></li>
+      <li><div class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="c"><b>Rapid patching</b><span>We deployed critical security updates, with every fix completed and verified.</span><em>COMPLETED &amp; VERIFIED</em></div></li>
+      <li><div class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="c"><b>Enhanced monitoring</b><span>We strengthened our system log reviews and stepped up real-time security surveillance.</span><em>ONGOING</em></div></li>
+    </ol>
+    <p class="t">We remain committed to strengthening our defences to protect your account, funds and transactions at all times.</p>
+  </section>
+
+  <section>
+    <div class="eb">HOW TBAY PROTECTS EVERY TRANSACTION</div>
+    <h2>Five layers of protection, around the clock</h2>
+    <div class="layers">
+      <div class="ly"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></i><div><b>Data protection</b><span>End-to-end encryption for all personal details and transaction records.</span></div></div>
+      <div class="ly"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></i><div><b>Account security</b><span>Reinforced login protection with Two-Factor Authentication (2FA).</span></div></div>
+      <div class="ly"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h15a3 3 0 0 1 3 3v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 7l12-4v4M17 14h.01"/></svg></i><div><b>Fund protection</b><span>Multi-step withdrawal safeguards, transaction verification and smart limit controls.</span></div></div>
+      <div class="ly"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></i><div><b>Fraud monitoring</b><span>24/7 active surveillance to detect and block suspicious activity.</span></div></div>
+      <div class="ly"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></i><div><b>System integrity</b><span>Continuous security testing, vulnerability patching and infrastructure hardening.</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eb">OUR LONG-TERM COMMITMENT</div>
+    <div class="quote"><b>Security isn't a one-time task.<br><span>It's a daily responsibility.</span></b>
+      <p>As Safety Season continues, we'll keep strengthening our defences, improving how we detect risk, and keeping you informed of important security updates.</p></div>
+  </section>
+
+  <section>
+    <div class="eb">HELP US KEEP YOU SAFE</div>
+    <h2>Four habits that protect your account</h2>
+    <div class="tips">
+      <div class="tip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></i><b>Trade only on official Tbay channels</b><span>Use the Tbay app and our verified accounts only.</span></div>
+      <div class="tip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3"/></svg></i><b>Keep your login details private</b><span>Never share your password, PIN or codes, even with someone claiming to be from Tbay.</span></div>
+      <div class="tip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></i><b>Watch out for suspicious links</b><span>Don't tap links in unexpected messages or emails.</span></div>
+      <div class="tip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 10h.01M15 10h.01"/></svg></i><b>Ignore unsolicited messages</b><span>Not sure about a message? Check with Tbay support in the app.</span></div>
+    </div>
+  </section>
+
+  <div class="sign">
+    <div class="sh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+    <p>Security isn't just a promise; it's continuous action. Thank you for your continued trust. We'll keep safeguarding every transaction so you can trade with complete peace of mind.</p>
+    <b>Your gift cards, in safe hands.</b>
+    <small>The Tbay Team</small>
+  </div>
+  <footer>© Tbay · Safety Season</footer>
+</main>
+</body>
+</html>
